@@ -1,6 +1,8 @@
-# node-v4l2camera
+# v4l2camera
 
 Capturing images from USB(UVC) webcam on linux machines.
+
+This fork was made for Node.JS 10.x support
 
 ## Requirements
 

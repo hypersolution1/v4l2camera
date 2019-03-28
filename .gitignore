@@ -8,3 +8,4 @@ list-formats
 *.o
 result*.png
 result*.jpg
+.vscode

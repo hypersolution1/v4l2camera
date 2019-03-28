@@ -221,7 +221,7 @@ bool camera_close(camera_t* camera)
 
 
 //[[capturing]
-/*
+
 bool camera_capture(camera_t* camera)
 {
   struct v4l2_buffer buf;
@@ -233,8 +233,8 @@ bool camera_capture(camera_t* camera)
   camera->head.length = buf.bytesused;
   if (xioctl(camera->fd, VIDIOC_QBUF, &buf) == -1) return false;
   return true;
-}*/
-
+}
+/*
 bool camera_capture(camera_t* camera)
 {
   fd_set                          fds;
@@ -276,7 +276,7 @@ bool camera_capture(camera_t* camera)
 
 
 }
-
+*/
 
 static inline int minmax(int min, int v, int max)
 {

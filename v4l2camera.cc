@@ -15,7 +15,7 @@ namespace {
     Nan::Persistent<v8::Object> thisObj;
     std::unique_ptr<Nan::Callback> callback;
   };
-  
+
   class Camera : public Nan::ObjectWrap {
   public:
     static  NAN_MODULE_INIT(Init);
@@ -38,7 +38,9 @@ namespace {
     WatchCB(uv_poll_t* handle, void (*callbackCall)(CallbackData* data));
     static void
     Watch(const Nan::FunctionCallbackInfo<v8::Value>& info, uv_poll_cb cb);
-    
+
+    //static Nan::Persistent<v8::Function> constructor;
+
     Camera();
     ~Camera();
     camera_t* camera;
@@ -252,7 +254,8 @@ namespace {
       // [NOTE] generic recursive call with `new`
       std::vector<v8::Local<v8::Value>> args(info.Length());
       for (auto i = std::size_t{0}; i < args.size(); ++i) args[i] = info[i];
-      auto inst = Nan::NewInstance(info.Callee(), args.size(), args.data());
+      auto ctor = Nan::New<v8::FunctionTemplate>(New)->GetFunction();
+      auto inst = Nan::NewInstance(ctor, args.size(), args.data());
       if (!inst.IsEmpty()) info.GetReturnValue().Set(inst.ToLocalChecked());
       return;
     }
@@ -427,6 +430,7 @@ namespace {
     auto ctorInst = ctor->InstanceTemplate();
     ctor->SetClassName(name);
     ctorInst->SetInternalFieldCount(1);
+    //constructor.Reset(ctor->GetFunction());
     
     Nan::SetPrototypeMethod(ctor, "start", Start);
     Nan::SetPrototypeMethod(ctor, "stop", Stop);

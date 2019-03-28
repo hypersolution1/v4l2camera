@@ -2,6 +2,8 @@
 
 Capturing images from USB(UVC) webcam on linux machines.
 
+Fork of https://github.com/bellbind/node-v4l2camera
+
 This fork was made for Node.JS 10.x support
 
 ## Requirements
@@ -16,7 +18,7 @@ This fork was made for Node.JS 10.x support
 On linux machines:
 
 ```bash
-npm install v4l2camera
+npm install @hypersolution/v4l2camera
 ```
 
 - package details: https://npmjs.org/package/v4l2camera
